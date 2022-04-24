@@ -1,2 +1,3 @@
-# AVRentalServiceSystem
-Cloud based AV Rental Service System
+# CMPE281-Group3-AV
+
+# CMPE281-Group3_AVCLOUD
