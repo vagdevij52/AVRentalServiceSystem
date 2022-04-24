@@ -18,8 +18,7 @@ if (!config.get("jwtPrivateKey")) {
 const mongoose = require("mongoose");
 
 mongoose
-  .connect("mongodb+srv://root:root@cluster0.kglve.mongodb.net/sensor_frame_data", {
-
+  .connect("mongodb+srv://root:root1234@cluster1.ssmqr.mongodb.net/sensordata", {
     // retry to connect 
     reconnectTries: 1,
     // wait 5 seconds before retry
