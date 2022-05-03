@@ -85,7 +85,7 @@ class Ui_MainWindow(object):
 
     # Function to start the CARLA Simulator
     def simulation_start(self):
-        subprocess.Popen("/opt/carla-simulator/CarlaUE4.sh")
+        subprocess.Popen("C:\Windows\System32\cmd.exe\CarlaUE4.exe")
 
     def go_to_sim_window(self):
         self.window = QtWidgets.QMainWindow()

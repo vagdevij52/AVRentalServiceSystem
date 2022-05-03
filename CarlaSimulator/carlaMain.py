@@ -36,14 +36,19 @@ from PyQt5.QtCore import pyqtSlot
 from pymongo import MongoClient
 
 import pyodbc
-from sync_data import sen_main
+#from sync_data import sen_main
 
-server = 'tcp:swessqlserver.co7pzwu1hwvu.us-east-1.rds.amazonaws.com'
+server = '34.222.77.171'
 port = '1433' # Optional
-username = 'admin'
-password = 'Swetha12345'
-database = 'AVCLOUD'
-cnxn = pyodbc.connect('DRIVER={ODBC Driver 17 for SQL Server};SERVER='+server+';DATABASE='+database+';UID='+username+';PWD='+ password)
+username = 'SA'
+password = 'Shreshta.99'
+database = 'cmpe281'
+
+# change added here
+#cnxn = pyodbc.connect('DRIVER={ODBC Driver 17 for SQL Server};SERVER='+server+';DATABASE='+database+';UID='+username+';PWD='+ password)
+
+cnxn = pyodbc.connect('DRIVER={34.222.77.171};host='+server+';DATABASE='+database+';UID='+username+';PWD='+ password)
+
 cursor = cnxn.cursor()
 
 #Sample select query
@@ -179,8 +184,8 @@ class World(object):
         # -------------------- GUI Parameters --------------------
         # --------------------------------------------------------
         # clear_to_db()
-        if os.path.isfile("/opt/carla-simulator/PythonAPI/examples/sensorData/data.json"):
-            os.remove("/opt/carla-simulator/PythonAPI/examples/sensorData/data.json")
+        if os.path.isfile("C:\Apps\CARLA_0.9.13\WindowsNoEditor\PythonAPI\examples\sensorData\data.json"):
+            os.remove("C:\Apps\CARLA_0.9.13\WindowsNoEditor\PythonAPI\examples\sensorData\data.json")
         else:  ## Show an error ##
             print("Error: file not found")
 
@@ -585,7 +590,7 @@ class HUD(object):
         data['frame'] = []
         data['frame'].append(carla_info)
 
-        with open("/opt/carla-simulator/PythonAPI/examples/sensorData/data.json", 'w') as outfile:
+        with open("C:\Apps\CARLA_0.9.13\WindowsNoEditor\PythonAPI\examples\sensorData\data.json", 'w') as outfile:
             try:
                 json.dump(data, outfile)
                 outfile.write('\n')# omit in 3.x!
@@ -1346,8 +1351,8 @@ def game_loop(args):
 def write_to_db(info):
 
     client = MongoClient(
-        "mongodb+srv://admin:Swetha12345@avcloud.v0hfj.mongodb.net/AVCLOUD?retryWrites=true&w=majority")
-    db = client.get_database('AVCLOUD')
+        "mongodb+srv://root:root1234@cluster1.ssmqr.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+    db = client.get_database('sensor_frame_data')
     # print(client.list_database_names())
     records = db.SensorData
     records.delete_many({})
@@ -1358,8 +1363,8 @@ def write_to_db(info):
 
 def write_to_routedb(route_info):
     client = MongoClient(
-        "mongodb+srv://admin:Swetha12345@avcloud.v0hfj.mongodb.net/AVCLOUD?retryWrites=true&w=majority")
-    db = client.get_database('AVCLOUD')
+        "mongodb+srv://root:root1234@cluster1.ssmqr.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+    db = client.get_database('sensor_frame_data')
     # print(client.list_database_names())
     # route_records = db.RouteInfo
     # # route_records.delete_many({})
@@ -1428,7 +1433,7 @@ class Main(object):
         self.car_label = QtWidgets.QLabel(self.centralwidget)
         self.car_label.setGeometry(QtCore.QRect(100, 330, 750, 600))
         self.car_label.setObjectName("car_label")
-        self.movie = QtGui.QMovie('/opt/carla-simulator/PythonAPI/examples/images/carla.gif')
+        self.movie = QtGui.QMovie('C:\Apps\CARLA_0.9.13\WindowsNoEditor\PythonAPI\examples\images\carla.gif')
         self.car_label.setMovie(self.movie)
         self.movie.start()
 
@@ -1666,7 +1671,7 @@ class Main(object):
 #         """
 if __name__ == '__main__':
     # main()
-    carlaProcess = subprocess.Popen("/opt/carla-simulator/CarlaUE4.sh")
+    carlaProcess = subprocess.Popen("C:\Apps\CARLA_0.9.13\WindowsNoEditor\CarlaUE4.exe")
     time.sleep(8)
     app = QtWidgets.QApplication(sys.argv)
     # app.setStyleSheet(stylesheet)
